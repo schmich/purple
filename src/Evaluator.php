@@ -35,6 +35,8 @@ class Evaluator
     return $source;
   }
 
+  // TODO: Move to external function?
+  // TODO: Use rare naming scheme to avoid evaluation collision (e.g. $source).
   private function runInContext() {
     $source = yield;
     while (true) {

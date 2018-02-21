@@ -12,24 +12,43 @@ class EvaluatorTest extends TestCase
 
   function testExpressions() {
     $tests = [
-      '1' => 1,
-      'true' => true,
-      'TRUE' => TRUE,
-      'false' => false,
-      'FALSE' => false,
-      '"a"' => 'a',
-      '1+1' => 2
+      ['1', 1],
+      ['true', true],
+      ['TRUE', TRUE],
+      ['false', false],
+      ['FALSE', false],
+      ['null', null],
+      ['NULL', NULL],
+      ['"a"', 'a'],
+      ['1+1', 2]
     ];
 
-    foreach ($tests as $source => $expected) {
-      $actual = $this->evaluator->run($source);
-      $this->assertEquals($expected, $actual);
-    }
+    $this->sequence($tests);
+  }
+
+  function testContext() {
+    $this->sequence([
+      ['$x', null],
+      ['$x = 42', 42],
+      ['$x', 42]
+    ]);
   }
 
   function testFunctions() {
-    $this->evaluator->run('$f = function($x, $y) { return $x + $y; }');
-    $actual = $this->evaluator->run('$f(10, 20)');
-    $this->assertEquals(30, $actual);
+    $this->sequence([
+      ['$f = function($x, $y) { return $x + $y; }'],
+      ['$f(10, 20)', 30]
+    ]);
+  }
+
+  private function sequence($tests) {
+    foreach ($tests as $test) {
+      $source = $test[0];
+      $actual = $this->evaluator->run($source);
+      if (count($test) === 2) {
+        $expected = $test[1];
+        $this->assertEquals($expected, $actual, "Evaluating `$source`");
+      }
+    }
   }
 }
