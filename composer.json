@@ -1,7 +1,16 @@
 {
     "name": "schmich/purple",
     "description": "Modern PHP REPL",
+    "homepage": "https://github.com/schmich/purple",
     "license": "MIT",
+    "authors": [
+      {
+        "name": "Chris Schmich",
+        "email": "schmch@gmail.com",
+        "homepage": "https://github.com/schmich",
+        "role": "Developer"
+      }
+    ],
     "autoload": {
         "classmap": [
             "src/"
