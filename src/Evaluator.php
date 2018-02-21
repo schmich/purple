@@ -23,16 +23,21 @@ class Evaluator
       T_TRY, T_UNSET
     ];
 
-    $tokens = token_get_all("<?php $source");
+    $prepared = trim($source);
+    $tokens = token_get_all("<?php $prepared");
 
     if (in_array($tokens[1][0], $statements)) {
       // Statement.
     } else {
       // Expression.
-      $source = "return $source;";
+      $prepared = "return $prepared";
     }
 
-    return $source;
+    if ($prepared[strlen($prepared) - 1] !== ';') {
+      $prepared .= ';';
+    }
+
+    return $prepared;
   }
 
   // TODO: Move to external function?
