@@ -12,9 +12,9 @@
       }
     ],
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "Purple\\": "src/"
+        }
     },
     "require": {
         "php": "^5.0"
