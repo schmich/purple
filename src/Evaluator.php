@@ -20,7 +20,7 @@ class Evaluator
     static $statements = [
       T_RETURN, T_THROW, T_CLASS, T_FUNCTION, T_INTERFACE, T_ABSTRACT,
       T_STATIC, T_ECHO, T_INCLUDE, T_INCLUDE_ONCE, T_REQUIRE, T_REQUIRE_ONCE,
-      T_TRY
+      T_TRY, T_UNSET
     ];
 
     $tokens = token_get_all("<?php $source");
