@@ -1,6 +1,7 @@
 {
     "name": "schmich/purple",
-    "description": "PHP REPL",
+    "description": "Modern PHP REPL",
+    "license": "MIT",
     "autoload": {
         "classmap": [
             "src/"
