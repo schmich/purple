@@ -47,7 +47,7 @@ class EvaluatorTest extends TestCase
       $actual = $this->evaluator->run($source);
       if (count($test) === 2) {
         $expected = $test[1];
-        $this->assertEquals($expected, $actual, "Evaluating `$source`");
+        $this->assertSame($expected, $actual, "Evaluating `$source`");
       }
     }
   }
