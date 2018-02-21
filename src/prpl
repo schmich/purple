@@ -57,24 +57,5 @@ class Color
     }
 }
 
-$reader = function() {
-  while (true) {
-    $source = readline(Color::set('php', 'magenta') . '> ');
-    if ($source[0] === null) {
-      break;
-    }
-
-    yield $source;
-  }
-};
-
-$evaluator = [new \Purple\Evaluator(), 'run'];
-
-$printer = function($result) {
-  var_dump($result);
-};
-
-$shell = new \Purple\Shell($reader, $evaluator, $printer);
+$shell = new Purple\Shell();
 $shell->run();
-
-// TODO: Create a bundled Purple shell that wraps this all together.

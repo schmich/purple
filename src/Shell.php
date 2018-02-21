@@ -4,16 +4,28 @@ namespace Purple;
 
 class Shell
 {
-  function __construct($reader, $evaluator, $printer) {
-    $this->reader = $reader;
-    $this->evaluator = $evaluator;
-    $this->printer = $printer;
+  function __construct() {
+    $reader = function() {
+      while (true) {
+        $source = readline('php> ');
+        if ($source[0] === null) {
+          break;
+        }
+
+        yield $source;
+      }
+    };
+
+    $evaluator = [new Evaluator(), 'run'];
+
+    $printer = function($result) {
+      var_dump($result);
+    };
+
+    $this->repl = new Repl($reader, $evaluator, $printer);
   }
 
   function run() {
-    foreach (call_user_func($this->reader) as $source) {
-      $result = call_user_func($this->evaluator, $source);
-      call_user_func($this->printer, $result);
-    }
+    $this->repl->run();
   }
 }
