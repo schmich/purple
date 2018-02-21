@@ -11,7 +11,7 @@ class EvaluatorTest extends TestCase
   }
 
   function testExpressions() {
-    $tests = [
+    $this->sequence([
       ['1', 1],
       ['true', true],
       ['TRUE', TRUE],
@@ -21,9 +21,21 @@ class EvaluatorTest extends TestCase
       ['NULL', NULL],
       ['"a"', 'a'],
       ['1+1', 2]
-    ];
+    ]);
+  }
 
-    $this->sequence($tests);
+  function testStatements() {
+    $this->sequence([
+      ['class Foo{}', null]
+    ]);
+  }
+
+  function testUnset() {
+    $this->sequence([
+      ['$x = 42', 42],
+      ['unset($x)', null],
+      ['$x', null]
+    ]);
   }
 
   function testContext() {
