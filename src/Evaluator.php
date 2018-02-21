@@ -25,7 +25,7 @@ class Evaluator
 
     $tokens = token_get_all("<?php $source");
 
-    if (in_array($tokens[1], $statements)) {
+    if (in_array($tokens[1][0], $statements)) {
       // Statement.
     } else {
       // Expression.
