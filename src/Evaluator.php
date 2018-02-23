@@ -11,7 +11,6 @@ class Evaluator
   function run($source) {
     $this->context->send($source);
     $result = $this->context->current();
-    $this->context->next();
     return $result;
   }
 
