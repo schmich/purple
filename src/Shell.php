@@ -2,12 +2,14 @@
 
 namespace Purple;
 
+use function Colorize\magenta;
+
 class Shell
 {
   function __construct() {
     $reader = function() {
       while (true) {
-        $source = readline('php> ');
+        $source = readline(magenta('php') . '> ');
         if ($source[0] === null) {
           break;
         }
