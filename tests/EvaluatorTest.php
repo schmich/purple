@@ -13,6 +13,7 @@ class EvaluatorTest extends TestCase
   function testExpressions() {
     $this->sequence([
       ['1', 1],
+      [' 1 ', 1],
       ['true', true],
       ['TRUE', TRUE],
       ['false', false],
@@ -20,7 +21,12 @@ class EvaluatorTest extends TestCase
       ['null', null],
       ['NULL', NULL],
       ['"a"', 'a'],
-      ['1+1', 2]
+      ['!true', false],
+      ['!!true', true],
+      ['[1, 2]', [1, 2]],
+      ['array(1, 2)', [1, 2]],
+      ['1 + 1', 2],
+      ['(2 * 3) + 4', 10]
     ]);
   }
 
