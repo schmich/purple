@@ -3,5 +3,5 @@
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-$shell = new Purple\Shell();
+$shell = new Purple\Shell('/Users/schmich/.prpl');
 $shell->run();
